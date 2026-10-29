@@ -20,6 +20,9 @@ importers:
       react-dom:
         specifier: ^19.3.1
         version: 19.3.1(react@19.3.1)
+      wanted-sans:
+        specifier: ^1.0.3
+        version: 1.0.3
     devDependencies:
       '@tailwindcss/vite':
         specifier: ^4.3.3
@@ -1074,6 +1077,9 @@ packages:
       vite:
         optional: true
 
+  wanted-sans@1.0.3:
+    resolution: {integrity: sha512-YU+mQRJMc97zMGFmxFjOvjdrF5Hi2zagc69bNP9n//i77Dlf9AWGfziZWYKdhQzPK5tw+e0iHcjLrZXDatxRTQ==}
+
   webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
 
@@ -1952,6 +1958,8 @@ snapshots:
   vitefu@1.1.3(vite@8.3.5(@types/node@26.6.6)(jiti@2.7.0)):
     optionalDependencies:
       vite: 8.3.5(@types/node@26.6.6)(jiti@2.7.0)
+
+  wanted-sans@1.0.3: {}
 
   webpack-virtual-modules@0.6.2: {}
 
