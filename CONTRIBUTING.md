@@ -51,7 +51,10 @@ further portfolio work. Keep the existing local-draft history intact.
 
 검토 가능한 변경이 준비되면 PR을 연다. 진행 중 피드백이 필요하면 Draft를 사용하고,
 검증과 작성자 셀프 리뷰가 끝나면 검토 가능한 상태로 전환한다. 제목도 커밋 형식을
-따른다. PR 본문은 [템플릿](.github/pull_request_template.md)을 사용한다.
+따른다. PR 제목·본문·댓글은 한글로 작성하되 `docs` 같은 유형, 이슈 식별자,
+코드·명령·기술 이름은 원문을 유지한다.
+예: `docs: 협업 규칙과 PR 템플릿 정의 (UKO-135)`.
+PR 본문은 [템플릿](.github/pull_request_template.md)을 사용한다.
 
 - Linear 이슈의 식별자와 전체 링크를 적는다. 공개 저장소 독자는 Linear 접근 권한이
   없을 수 있으므로 문제와 핵심 판단을 PR 자체에서도 이해할 수 있게 쓴다.
