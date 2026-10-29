@@ -1,0 +1,27 @@
+import { useEffect, useState } from 'react'
+import { careers, skillGroups, github, careerDocument } from '../content/career'
+const sections = [{ id: 'about', label: '소개' }, { id: 'experience', label: '경력과 프로젝트' }, { id: 'more', label: '그 밖의 경험' }, { id: 'skills', label: '기술과 도구' }]
+function Arrow() { return <span aria-hidden="true">↗</span> }
+export function Portfolio() {
+  const [active, setActive] = useState('about')
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => { for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id) }, { rootMargin: '-12% 0px -65% 0px' })
+    sections.forEach(({ id }) => { const node = document.getElementById(id); if (node) observer.observe(node) })
+    return () => observer.disconnect()
+  }, [])
+  return <>
+    <a className="skip-link" href="#about">본문으로 건너뛰기</a>
+    <header className="topbar"><a className="wordmark" href="#about" aria-label="하지웅 소개">hajiung<span>.</span></a><div className="top-links"><span className="edition">CAREER & WORK</span><a href={github} target="_blank" rel="noreferrer">GitHub <Arrow /></a></div></header>
+    <div className="page-layout">
+      <aside className="sidebar"><div className="sidebar-label">ON THIS PAGE</div><nav aria-label="페이지 목차">{sections.map(({ id, label }, i) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined}><span className="nav-index">0{i + 1}</span>{label}</a>)}</nav><div className="sidebar-note">생각에서 실행으로,<br />그리고 다음 개선으로.</div></aside>
+      <main id="main-content">
+        <section id="about" className="intro section"><div className="intro-meta"><span className="eyebrow">SOFTWARE DEVELOPER</span><span className="location">SEOUL, KR</span></div><h1>하지웅<span className="name-en">Ha Jiung</span></h1><h2 className="headline">함께 나눈 고민을<br />실제 변화로 이어갑니다<span className="accent">.</span></h2><div className="intro-copy"><p>무엇을 만들 수 있는지보다, 지금의 문제를 어떤 방식으로 풀 수 있는지에서 출발합니다. 사람들의 이야기를 이해하고, 막연하게 느껴지는 불편을 해결 가능한 문제로 구체화하는 것. 좋은 개발은 여기서 시작된다고 생각합니다.</p><p>고객과 동료의 이야기를 요구사항으로 정리하는 일부터 도메인 모델링, API 설계, 웹·앱 구현까지 해결에 필요한 영역을 함께 다뤄왔습니다. Codex와 Claude Code를 개발 과정에 활용하고, 사용자의 피드백과 행동 데이터를 바탕으로 제품을 꾸준히 개선하고 있습니다.</p></div><div className="intro-actions"><a href="#experience">경력과 프로젝트 보기 <span aria-hidden="true">↓</span></a><button type="button" onClick={() => window.print()}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z" /></svg> 인쇄 · PDF 저장</button></div></section>
+        <section id="experience" className="section"><SectionHeading number="01" title="경력과 프로젝트" english="EXPERIENCE & PROJECTS" />{careers.map((career, index) => <article className="career" key={career.company}><div className="career-meta"><span className="period">{career.period}</span>{index === 0 && <span className="current"><i />재직 중</span>}</div><div className="career-body"><header className="company-header"><h3>{career.company}</h3><span>{career.role}</span></header><p className="career-summary">{career.summary}</p><div className="projects">{career.projects.map(project => <section className="project" key={project.name}><h4>{project.name}</h4><p className="project-description">{project.description}</p><ul>{project.points.map(point => <li key={point}>{point}</li>)}</ul><div className="stack" aria-label="프로젝트 기술">{project.stack.map(s => <span key={s}>{s}</span>)}</div></section>)}</div></div></article>)}</section>
+        <section id="more" className="section"><SectionHeading number="02" title="그 밖의 경험" english="MORE EXPERIENCE" /><div className="compact-row"><span className="period">2024.08 — 2025.01</span><div><div className="row-heading"><h3>대량문자 전송자격인증제</h3><span>프리랜서</span></div><p>방송통신이용자보호협회의 인증 신청 플랫폼 구축. 신청·인증·결과 안내의 흐름을 구성하고, 운영자 피드백을 바탕으로 인증 실패 안내와 관리 기능을 개선했습니다.</p><div className="stack"><span>Next.js</span><span>Supabase</span><span>AWS Amplify</span></div></div></div><div className="compact-row"><span className="period">2022.11 — 2023.04</span><div><div className="row-heading"><h3>코드스테이츠</h3><span>직무교육</span></div><p>프론트엔드 개발 직무교육 수료 및 팀 프로젝트 수행.</p></div></div><div className="compact-row"><span className="period">2021.11 — 2022.05</span><div><div className="row-heading"><h3>한국수목원정원관리원</h3><span>시설관리팀 · 주임</span></div><p>국립백두대간수목원 시설 유지보수 및 공사 관리·감독.<br />이후 소프트웨어 개발로 직무를 전환했습니다.</p></div></div></section>
+        <section id="skills" className="section skills-section"><SectionHeading number="03" title="기술과 도구" english="TOOLS OF THE TRADE" />{skillGroups.map(group => <div className="skill-row" key={group.label}><h3>{group.label}</h3><p>{group.values.map(value => <span key={value}>{value}</span>)}</p></div>)}</section>
+        <footer><div className="footer-main"><span className="wordmark">hajiung<span>.</span></span><div><a href={github} target="_blank" rel="noreferrer">GitHub <Arrow /></a><a href={careerDocument} target="_blank" rel="noreferrer">기존 경력기술서 <Arrow /></a><a href="#about">맨 위로 ↑</a></div></div><div className="footer-bottom"><span>© 2026 하지웅</span><span>고민을 나누고, 해결을 이어갑니다.</span></div></footer>
+      </main>
+    </div>
+  </>
+}
+function SectionHeading({ number, title, english }: { number: string; title: string; english: string }) { return <header className="section-heading"><div><span className="section-number">{number}</span><h2>{title}</h2></div><span className="eyebrow">{english}</span></header> }
