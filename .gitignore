@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.output/
+.tanstack/
+.env*
+!.env.example
+.DS_Store
+*.log
+
+# Local resume captures and preview artifacts (root only)
+/*.png
+/*.jpg
+/*.jpeg
+/*.pdf
+
+# Previous local app build artifacts
+/website/
